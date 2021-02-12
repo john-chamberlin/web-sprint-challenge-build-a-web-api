@@ -39,19 +39,19 @@ router.post('/', validateActionBody, (req, res) => {
     })
 })
 
-router.put('/:id', validateActionId, (req, res) => {
-  const { id } = req.params
-  const changes = req.body
-  Actions.update(id, changes)
-    .then(action => {
-      res.status(200).json(action)
-    })
-    .catch(error => {
-      res.status(500).json({
-        message: `Error modifying action with ID ${id}`,
-        error: error
-      })
-    })
+router.put('/:id', validateActionId, validateActionBody, (req, res) => {
+    const { id } = req.params
+    const changes = req.body
+    Actions.update(id, changes)
+        .then(action => {
+            res.status(200).json(action)
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: `Error modifying action with ID ${id}`,
+                error: error
+            })
+        })
 })
 
 router.delete('/:id', validateActionId, (req, res) => {

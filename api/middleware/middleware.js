@@ -24,7 +24,7 @@ const validateActionId = (req, res, next) => {
 
 const validateActionBody = (req, res, next) => {
     if (!req.body.project_id || !req.body.description || !req.body.notes) {
-        res.status(404).json({
+        res.status(400).json({
             message:
                 'Please include project id, description, and notes for the new action'
         })
@@ -47,7 +47,7 @@ const validateProjectId = (req, res, next) => {
 
 const validateProjectBody = (req, res, next) => {
     if (!req.body.name || !req.body.description) {
-        res.status(404).json({ message: 'Please include name and description' })
+        res.status(400).json({ message: 'Please include name and description' })
     } else {
         next()
     }

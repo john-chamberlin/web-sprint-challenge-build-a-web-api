@@ -39,7 +39,7 @@ router.post('/', validateProjectBody, (req, res) => {
         })
 })
 
-router.put('/:id', validateProjectId, (req, res) => {
+router.put('/:id', validateProjectId, validateProjectBody, (req, res) => {
     const { id } = req.params
     const changes = req.body
     Projects.update(id, changes)
